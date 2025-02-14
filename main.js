@@ -9,7 +9,7 @@ async function initializeLiff() {
       liff.login();
     } else {
       displayProfile();
-      setupButtons();
+      // setupButtons();
     }
   } catch (err) {
     console.error("LIFF Initialization failed", err);
@@ -33,41 +33,41 @@ async function displayProfile() {
   }
 }
 
-function setupButtons() {
-  // Nút chia sẻ tin nhắn
-  document.getElementById("btnShare").onclick = async () => {
-    try {
-      await liff.shareTargetPicker([
-        {
-          type: "text",
-          text: "Hello from LIFF App!",
-        },
-      ]);
-    } catch (err) {
-      console.error("Error sharing message:", err);
-    }
-  };
+// function setupButtons() {
+//   // Nút chia sẻ tin nhắn
+//   document.getElementById("btnShare").onclick = async () => {
+//     try {
+//       await liff.shareTargetPicker([
+//         {
+//           type: "text",
+//           text: "Hello from LIFF App!",
+//         },
+//       ]);
+//     } catch (err) {
+//       console.error("Error sharing message:", err);
+//     }
+//   };
 
-  // Nút quét mã QR
-  document.getElementById("btnScan").onclick = async () => {
-    if (!liff.isInClient()) {
-      alert("QR scanning is only available in LINE app");
-      return;
-    }
-    try {
-      const result = await liff.scanCode();
-      alert(`QR Code: ${result.value}`);
-    } catch (err) {
-      console.error("Error scanning QR code:", err);
-    }
-  };
+//   // Nút quét mã QR
+//   document.getElementById("btnScan").onclick = async () => {
+//     if (!liff.isInClient()) {
+//       alert("QR scanning is only available in LINE app");
+//       return;
+//     }
+//     try {
+//       const result = await liff.scanCode();
+//       alert(`QR Code: ${result.value}`);
+//     } catch (err) {
+//       console.error("Error scanning QR code:", err);
+//     }
+//   };
 
-  // Nút đóng cửa sổ
-  document.getElementById("btnClose").onclick = () => {
-    if (liff.isInClient()) {
-      liff.closeWindow();
-    }
-  };
-}
+//   // Nút đóng cửa sổ
+//   document.getElementById("btnClose").onclick = () => {
+//     if (liff.isInClient()) {
+//       liff.closeWindow();
+//     }
+//   };
+// }
 
 initializeLiff();
